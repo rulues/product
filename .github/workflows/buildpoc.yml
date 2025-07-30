@@ -40,32 +40,34 @@ jobs:
 
 # 3. Realiza validacion de build feature y acciones para  Automatic merge  en Develop
 
-#  merge-feature-into-develop:
-#    runs-on: ubuntu-latest
-#    needs: build-feature
-#    if: ${{ success() }}
+  merge-feature-into-develop:
+    runs-on: ubuntu-latest
+    needs: build-feature
+    if: ${{ success() }}
 #    #para un job especifico se puede utilizar <job_id>.permissions para modificar los permisos del TOKEN_ACTIONS
-#    permissions:
-#      contents: write
-#      pull-requests: write
-#    steps:
+    permissions:
+      contents: write
+      pull-requests: write
+    steps:
 #      # descargar source code
-#      # Solo un commit sera fetched por default,  for the ref/sha que sera lanzado en el workflow fetch_dept se definira en 0 para toda la history de todas las ramas
-#      - uses: actions/checkout@v3
-#        with:
-#        #descarga el codigo desde la rama destino "develop" o rama.base
-#          ref: ${{ github.base_ref }}
-#          fetch-depth: 0
+      # Solo un commit sera fetched por default,  for the ref/sha que sera lanzado en el workflow fetch_dept se definira en 0 para toda la history de todas las ramas
+      - uses: actions/checkout@v3
+        with:
+        #descarga el codigo desde la rama destino "develop" o rama.base
+          ref: ${{ github.base_ref }}
+          fetch-depth: 0
         
 #        #Merge a develop
-#      - name: Merge to development branch
-#        if: ${{ success() }}
-#        run: |
-#          git config --global user.email "moonslave192@gmail.com" 
-#          git config --global user.name "Rubi Luna"
-#          #using -m "message" on merge command ins mandatori here in order to avoid open a text editor to write a commit message
-#          #Usando -m "message" en el comando merge es obliugatorio para evitaer que se abra un editor de texto y se solicite que se envie un message
-#          git merge --no-ff --verbose origin/${{ github.event.pull_request.head.ref }} -m "Merge pull request #${{ github.event.number }}"
+    #  - name: Merge to development branch
+    #    if: ${{ success() }}
+    #    run: |
+    #      echo ${{ github.event.pull_request.head.ref }} 
+    #      echo ${{ github.event.number }}
+    #      git config --global user.email "ectinev@hotmail.com" 
+    #      git config --global user.name "rulues"
+          #using -m "message" on merge command ins mandatori here in order to avoid open a text editor to write a commit message
+          #Usando -m "message" en el comando merge es obliugatorio para evitaer que se abra un editor de texto y se solicite que se envie un message
+    #      git merge --no-ff --verbose origin/${{ github.event.pull_request.head.ref }} -m "Merge pull request #${{ github.event.number }}"
            
       
 #     # Push Changes after merge

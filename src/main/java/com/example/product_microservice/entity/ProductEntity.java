@@ -18,4 +18,7 @@ public class ProductEntity {
 	private String productName;
 	private String productDescription;
 	private Double unitPrice;
+	private Boolean refurbished;
+	private String color;
+	private Double size;
 }
